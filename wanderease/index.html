@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wanderease</title>
+    <style>
+        
+        .navbar-nav .nav-link {
+            color: #db7202;
+            transition: color 0.3s, text-decoration 0.3s;
+        }
+    
+        
+        .navbar-nav .nav-link.active {
+            color: #ffffff;
+        }
+    
+       
+        .navbar-nav .nav-link:hover {
+            color: #db7202;
+            text-decoration: none;
+            text-decoration-color: #db7202;
+            text-decoration-thickness: 2px;
+            text-underline-offset: 4px;
+        }
+    
+       
+        .navbar-nav .nav-link {
+            position: relative;
+        }
+        .navbar-nav .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #db7202;
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+            transform-origin: bottom right;
+        }
+        .navbar-nav .nav-link:hover::after {
+            transform: scaleX(1);
+            transform-origin: bottom left;
+        }
+
+       
+        .search-input {
+            border-radius: 25px;
+            padding-left: 2.5rem;
+            background: #fff;
+            width: 180px;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 0.75rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #6c757d;
+        }
+
+        .search-input::placeholder {
+            color: transparent;
+        }
+
+        .search-button {
+            border-radius: 25px;
+        }
+        #search-button:hover {
+            background-color: #db7202;
+            
+            border-color: #db7202;
+            color: #fff;
+        }
+        #search-button{
+            color: #db7202; border-color: #db7202;
+        }
+        
+        .input-group {
+            position: relative;
+            width: 100%;
+        }
+
+        .tabs-center {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+           
+        }
+
+       
+        .nav-pills .nav-item {
+            margin: 0 20px; 
+        }
+
+        
+        .tab-content {
+            margin-top: 30px;
+        }
+
+        .nav-pills .nav-link.active,
+        .nav-pills .show > .nav-link {
+            background-color: #db7202 !important; 
+            color: white !important; 
+        }
+
+       
+        .nav-pills .nav-link:hover {
+            color: #fff;
+            background-color: #db7202; 
+        }
+
+       
+        .nav-pills .nav-link {
+            
+            color: rgb(1, 29, 52);
+        }
+
+               
+        .nav-pills {
+            margin-top: 20px;  
+            margin-bottom: 20px;  
+        }
+
+       
+        .sticky-top {
+            z-index: 1020; 
+            background-color: white; 
+            padding-top: 10px; 
+            padding-bottom: 10px;
+            border-bottom: 1px solid #ccc; 
+        }
+
+        .travel-container{
+           
+            margin-left: 8vmin;    
+            position: relative;
+            display: flex;
+            flex-wrap: wrap;
+            
+        }
+        .travel-container .package1{
+            width: 300px;
+            height: 400px;
+            position: relative;
+            
+            margin-left: 3vmin;
+            
+            margin-bottom: 10vmin;
+            border-radius: 1vmin;
+        }
+        .travel-container .package1 .image{
+            height: 250px;
+            width: 100%;
+            position: relative;
+            
+            border-top-left-radius: 1vmin;
+            border-top-right-radius: 1vmin ;
+            border-radius: 1vmin;
+            overflow: hidden;
+        }
+        .travel-container .package1 .image img{
+            border-radius: 1vmin;
+            height: auto;
+            transition: transform 0.5s ease;
+        }
+        .travel-container .package1 .image img:hover{
+           
+            transform: scale(1.2);
+        }
+        .travel-container .package1 .one{
+            width: 100%;
+            height: 30px ;
+            position: relative;
+            
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .travel-container .package1 .one .days{
+            width: 50%;
+            height: 100%;
+            position: relative;
+          
+        }
+        .travel-container .package1 .one .days span{
+            
+            color: #6c757d;
+        }
+        .travel-container .package1 .one .rating{
+            width: 50%;
+            height: 100%;
+            position: relative;
+            
+        }
+        .travel-container .package1 .one .rating span{
+            margin-left: 120px;
+            color: #20d400;
+            font-weight: 900;
+            
+        }
+        .travel-container .package1 button{
+            width: 100%;
+            
+            height: 12%;
+            border-radius: 1.5vmin;
+            border: none;
+            background-color:  #6abdb7;
+            color: white;
+            font-weight: 700;
+            margin-top: 10px;
+        }
+
+        .country-name
+        {
+            position: absolute;
+            width: 40%;
+            height: 35px;
+            background-color: #6edbd4;
+            color: white;
+            font-weight: 700;
+            
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom-right-radius: 30%;
+            font-size: 90%;
+        }
+        h6{
+            font-weight: 200;
+            font-style: italic;
+        }
+        .welcome-section {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff; /* Set text color to white */
+}
+
+.welcome-section video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+/* Style the about section */
+.about-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.left-boxes, .right-boxes {
+  display: flex;
+  flex-direction: column;
+}
+
+.box {
+  width: 70%;
+  margin: 10px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.image-center {
+  margin: 20px;
+}
+.testimonial-section {
+    padding: 50px 0;
+    background-color: #f7f7f7;
+}
+
+.testimonial-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.testimonial-card {
+    margin: 20px;
+    width: 300px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial-image {
+    width: 100px;
+    height: 100px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    overflow: hidden;
+}
+
+.testimonial-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+.testimonial-content {
+    padding: 20px;
+}
+
+.testimonial-content p {
+    font-size: 16px;
+    color: #666;
+}
+
+.testimonial-content h5 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.testimonial-content span {
+    font-size: 14px;
+    color: #999;
+}
+.contact-section {
+    padding: 50px 0;
+    background-color: #f7f7f7;
+}
+
+.contact-info {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.contact-info h5 {
+    margin-bottom: 10px;
+}
+
+.contact-info p {
+    margin-bottom: 20px;
+}
+
+.social-media {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.social-media li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.social-media a {
+    color: #337ab7;
+    transition: color 0.2s ease;
+}
+
+.social-media a:hover {
+    color: #23527c;
+}
+
+.contact-form {
+    background-color: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form form {
+    margin-top: 20px;
+}
+
+.contact-form label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.contact-form input, .contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.contact-form button[type="submit"] {
+    background-color: #337ab7;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.contact-form button[type="submit"]:hover {
+    background-color: #23527c;
+}
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+}
+
+.footer h5 {
+    margin-bottom: 10px;
+}
+
+.footer p {
+    margin-bottom: 20px;
+}
+
+.footer ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer ul li {
+    margin-bottom: 10px;
+}
+
+.footer ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer ul li a:hover {
+    color: #ccc;
+}
+
+.social-media {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.social-media li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.social-media a {
+    color: #fff;
+    transition: color 0.2s ease;
+}
+
+.social-media a:hover {
+    color: #ccc;
+}
+
+.copyright {
+    background-color: #444;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    clear: both;
+}
+    </style>
+    <link rel="stylesheet" href="styles.css">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+    
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img style="transform: scale(1.2);margin-left:15px" src="wanderease.png" alt="Logo" width="60" class="d-inline-block align-text-top">
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse justify-content-between" id="navbarTogglerDemo03">
+                <div></div>
+                <div class="input-group" style="width: 300px;" >
+                    <input class="form-control search-input me-2"  type="search" aria-label="Search">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <button class="btn btn-outline-success search-button" id="search-button" type="submit" >Search</button>
+                </div>
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    <li class="nav-item me-5">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item me-5">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item me-5">
+                        <a class="nav-link" href="#package">Packages</a>
+                    </li>
+                    <li class="nav-item me-5">
+                        <a class="nav-link" href="#">Activities</a>
+                    </li>
+                    <li class="nav-item me-5">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                    <li class="nav-item me-5">
+                        <a class="nav-link" href="#testimonial">Testimonials</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    </div>
+    <div>
+    <div class="tabs-center ">
+        <ul class="nav sticky-top nav-pills mb-3" id="pills-tab" role="tablist">
+            <li class="nav-item " role="presentation">
+              <button class="nav-link active" id="pills-explore-tab" data-bs-toggle="pill" data-bs-target="#pills-explore" type="button" role="tab" aria-controls="pills-explore" aria-selected="true">Explore</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="pills-Azerbaijan-tab" data-bs-toggle="pill" data-bs-target="#pills-Azerbaijan" type="button" role="tab" aria-controls="pills-Azerbaijan" aria-selected="false">Azerbaijan</button>
+            </li>
+            <li class="nav-item " role="presentation">
+              <button class="nav-link" id="pills-Bali-tab" data-bs-toggle="pill" data-bs-target="#pills-Bali" type="button" role="tab" aria-controls="pills-Bali" aria-selected="false">Bali</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button class="nav-link" id="pills-Dubai-tab" data-bs-toggle="pill" data-bs-target="#pills-Dubai" type="button" role="tab" aria-controls="pills-Dubai" aria-selected="false">Dubai</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-Malaysia-tab" data-bs-toggle="pill" data-bs-target="#pills-Malaysia" type="button" role="tab" aria-controls="pills-Malaysia" aria-selected="false">Malaysia</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="pills-Singapore-tab" data-bs-toggle="pill" data-bs-target="#pills-Singapore" type="button" role="tab" aria-controls="pills-Singapore" aria-selected="false">Singapore</button>
+            </li>
+            <li class="nav-item" role="presentation"></li>
+                <button class="nav-link" id="pills-Srilanka-tab" data-bs-toggle="pill" data-bs-target="#pills-Srilanka" type="button" role="tab" aria-controls="pills-Srilanka" aria-selected="false">Srilanka</button>
+            </li>
+            <li class="nav-item" role="presentation"></li>
+                <button class="nav-link" id="pills-Thailand-tab" data-bs-toggle="pill" data-bs-target="#pills-Thailand" type="button" role="tab" aria-controls="pills-Thailand" aria-selected="false">Thailand</button>
+            </li>
+            <li class="nav-item" role="presentation"></li>
+                <button class="nav-link" id="pills-Vietnam-tab" data-bs-toggle="pill" data-bs-target="#pills-Vietnam" type="button" role="tab" aria-controls="pills-Vietnam" aria-selected="false">Vietnam</button>
+            </li>
+            
+              
+        </ul>
+        <div class="welcome-section">
+            <video poster="images/bg_1.jpg" loop autoplay muted playsinline="true">
+                <source src="images/wanderease.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        </div>
+        <div class="about-section" id="about">
+            <div class="text-center">
+              <h6>GET TO KNOW US</h6>
+              <h2>Experience the World With Wanderease</h2>
+              <p>Our dating website offers a range of features and benifits that make finding love online</p>
+              <p> and enjoyable. With our advanced matching algorithm</p>
+            </div>
+            <div class="container">
+                <div class="left-boxes">
+                  <div class="box">
+                    <h5>Luxury Trip</h5>
+                    <p>Our algorithm connects you with like-minded partners using your interests.</p>
+                  </div>
+                  <div class="box">
+                    <h5>Affordable Budget</h5>
+                    <p>Your safety is a priority. We ensure strict security for your information.</p>
+                  </div>
+                </div>
+                <div class="image-center">
+                  <img src="images/aboutimg.png" alt="image-alt ">
+                </div>
+                <div class="right-boxes">
+                  <div class="box">
+                    <h5>Personalized approach</h5>
+                    <p>Effortlessly navigate and find your perfect match with our user-friendly interface.</p>
+                  </div>
+                  <div class="box">
+                    <h5>Experienced Guide</h5>
+                    <p>Our team is available 24/7 to assist you with any queries or concern.</p>
+                  </div>
+                </div>
+              </div>
+          </div>
+    
+            </div>
+        <div class="tab-content" id="pills-tabContent">
+            
+            <div class="tab-pane fade show active" id="pills-explore" role="tabpanel" aria-labelledby="pills-explore-tab" tabindex="0">
+                <!-- <h1 style="margin-left:5vmin ;">India</h1> -->
+                 
+                <div class="travel-container" id="package">
+                    <div class="package1">
+                        <div class="image">
+                            <a href="AzerbaijanPackage.html">
+                            <div class="country-name">Azerbaijan</div>
+                            <img src="images/Azerbaijan.svg" alt="Beach" srcset="">
+                        </a>
+                        </div>
+                        <br>
+                        <div class="one">
+                            <div class="days">
+                                <span>5 days &amp; 4 nights </span>
+                            </div>
+                            <div class="rating">
+                                <span style="text-align-last: right;">4.9</span>
+                            </div>
+                        </div>
+                        <div class="two">
+                            <span >Azerbaijan</span>
+                            <h6  >Starts from INR 37,999</h6>
+                        </div>
+                        <button>Call Us</button>
+                    </div>
+
+                    <div class="package1">
+                        <div class="image">
+                            <a href ="BaliPackage.html">
+                            <div class="country-name">Bali</div>
+                            <img src="images/Bali.svg" alt="Beach" srcset="">
+                            </a>
+                        </div>
+                        <br>
+                        <div class="one">
+                            <div class="days">
+                                <span>6 days &amp; 5 nights </span>
+                            </div>
+                            <div class="rating">
+                                <span style="text-align-last: right;">4.9</span>
+                            </div>
+                        </div>
+                        <div class="two">
+                            <span >Bali</span>
+                            <h6 >Starts from INR 44,999</h6>
+                        </div>
+                        <button>Call Us</button>
+                    </div>
+
+                    <div class="package1">
+                        <div class="image">
+                            <div class="country-name">Dubai</div>
+                            <img src="images/Dubai.svg" alt="Beach" srcset="">
+                        </div>
+                        <br>
+                        <div class="one">
+                            <div class="days">
+                                <span>5 days &amp; 4 nights </span>
+                            </div>
+                            <div class="rating">
+                                <span style="text-align-last: right;">4.9</span>
+                            </div>
+                        </div>
+                        <div class="two">
+                            <span >Dubai</span>
+                            <h6 >Starts from INR 39,999</h6>
+                        </div>
+                        <button>Call Us</button>
+                    </div>
+
+                    <div class="package1">
+                        <div class="image">
+                            <div class="country-name">Malaysia</div>
+                            <img src="images/Malaysia.svg" alt="Beach" srcset="">
+                        </div>
+                        <br>
+                        <div class="one">
+                            <div class="days">
+                                <span>3 days &amp; 2 nights </span>
+                            </div>
+                            <div class="rating">
+                                <span style="text-align-last: right;">4.9</span>
+                            </div>
+                        </div>
+                        <div class="two">
+                            <span >Malaysia</span>
+                            <h6> Starts from INR 14,999</h6>
+                        </div>
+                        <button>Call Us</button>
+                    </div>
+
+                    <div class="package1">
+                        <div class="image">
+                            <div class="country-name">Singapore</div>
+                            <img src="images/Singapore.svg" alt="Beach" srcset="">
+                        </div>
+                        <br>
+                        <div class="one">
+                            <div class="days">
+                                <span>5 days &amp; 4 nights </span>
+                            </div>
+                            <div class="rating">
+                                <span style="text-align-last: right;">4.9</span>
+                            </div>
+                        </div>
+                        <div class="two">
+                            <span >Singapore</span>
+                            <h6 >Starts from INR 49,999</h6>
+                        </div>
+                        <button>Call Us</button>
+                    </div>
+
+                    <div class="package1">
+                        <div class="image">
+                            <div class="country-name">Srilanka</div>
+                            <img src="images/Srilanka.svg" alt="Beach" srcset="">
+                        </div>
+                        <br>
+                        <div class="one">
+                            <div class="days">
+                                <span>5 days &amp; 4 nights </span>
+                            </div>
+                            <div class="rating">
+                                <span style="text-align-last: right;">4.9</span>
+                            </div>
+                        </div>
+                        <div class="two">
+                            <span >Srilanka</span>
+                            <h6 >Starts from INR 39,999</h6>
+                        </div>
+                        <button>Call Us</button>
+                    </div>
+
+                    <div class="package1">
+                        <div class="image">
+                            <div class="country-name">Thailand</div>
+                            <img src="images/Thailand.svg" alt="Beach" srcset="">
+                        </div>
+                        <br>
+                        <div class="one">
+                            <div class="days">
+                                <span>5 days &amp; 4 nights </span>
+                            </div>
+                            <div class="rating">
+                                <span style="text-align-last: right;">4.9</span>
+                            </div>
+                        </div>
+                        <div class="two">
+                            <span >Thailand</span>
+                            <h6 >Starts from INR 34,999</h6>
+                        </div>
+                        <button>Call Us</button>
+                    </div>
+
+                    <div class="package1">
+                        <div class="image">
+                            <div class="country-name">Vietnam</div>
+                            <img src="images/Vietnam.svg" alt="Beach" srcset="">
+                        </div>
+                        <br>
+                        <div class="one">
+                            <div class="days">
+                                <span>5 days &amp; 4 nights </span>
+                            </div>
+                            <div class="rating">
+                                <span style="text-align-last: right;">4.9</span>
+                            </div>
+                        </div>
+                        <div class="two">
+                            <span >Vietnam</span>
+                            <h6 >Starts from INR 39,999</h6>
+                        </div>
+                        <button>Call Us</button>
+                    </div>
+                    
+                   
+                </div>
+
+               
+                
+
+            </div>
+            <div class="tab-pane fade" id="pills-Azerbaijan" role="tabpanel" aria-labelledby="pills-Azerbaijan-tab" tabindex="0">
+                <div class="travel-container">
+
+                    <div class="package1">
+                        <div class="image">
+                            <div class="country-name">Bali</div>
+                            <img src="image11.png" alt="Beach" srcset="">
+                        </div>
+                        <br>
+                        <div class="one">
+                            <div class="days">
+                                <span>5 days &amp; 4 nights </span>
+                            </div>
+                            <div class="rating">
+                                <span style="text-align-last: right;">4.9</span>
+                            </div>
+                        </div>
+                        <div class="two">
+                            <span >Azerbaijan</span>
+                            <h6 >Starts from INR 37,999</h6>
+                        </div>
+                        <button>Call Us</button>
+                    </div>
+
+                    <div class="package1">
+                        <div class="image">
+                            <div class="country-name">Bali</div>
+                            <img src="image11.png" alt="Beach" srcset="">
+                        </div>
+                        <br>
+                        <div class="one">
+                            <div class="days">
+                                <span>5 days &amp; 4 nights </span>
+                            </div>
+                            <div class="rating">
+                                <span style="text-align-last: right;">4.9</span>
+                            </div>
+                        </div>
+                        <div class="two">
+                            <span >Azerbaijan</span>
+                            <h6 >Starts from INR 37,999</h6>
+                        </div>
+                        <button>Call Us</button>
+                    </div>
+
+                    <div class="package1">
+                        <div class="image">
+                            <div class="country-name">Bali</div>
+                            <img src="image11.png" alt="Beach" srcset="">
+                        </div>
+                        <br>
+                        <div class="one">
+                            <div class="days">
+                                <span>5 days &amp; 4 nights </span>
+                            </div>
+                            <div class="rating">
+                                <span style="text-align-last: right;">4.9</span>
+                            </div>
+                        </div>
+                        <div class="two">
+                            <span >Azerbaijan</span>
+                            <h6 >Starts from INR 37,999</h6>
+                        </div>
+                        <button>Call Us</button>
+                    </div>
+
+                </div>
+            </div>
+            <div class="tab-pane fade" id="pills-Bali" role="tabpanel" aria-labelledby="pills-Bali-tab" tabindex="0">Bali content here</div>
+            <div class="tab-pane fade" id="pills-Dubai" role="tabpanel" aria-labelledby="pills-Dubai-tab" tabindex="0">Dubai content here</div>
+            <div class="tab-pane fade" id="pills-Malaysia" role="tabpanel" aria-labelledby="pills-Malaysia-tab" tabindex="0">Malaysia content here</div>
+            <div class="tab-pane fade" id="pills-Singapore" role="tabpanel" aria-labelledby="pills-Singapore-tab" tabindex="0">Singapore content here</div>
+            <div class="tab-pane fade" id="pills-Srilanka" role="tabpanel" aria-labelledby="pills-Srilanka-tab" tabindex="0">Srilanka content here</div>
+            <div class="tab-pane fade" id="pills-Thailand" role="tabpanel" aria-labelledby="pills-Thailand-tab" tabindex="0">Thailand content here</div>
+            <div class="tab-pane fade" id="pills-Vietnam" role="tabpanel" aria-labelledby="pills-Vietnam-tab" tabindex="0">Vietnam content here</div>
+        </div>
+        
+            <div class="contact-section" id="contact">
+                <div class="text-center">
+                    <h6>GET IN TOUCH WITH US</h6>
+                    <h2>Contact Us</h2>
+                </div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="contact-info">
+                                <h5>Address:</h5>
+                                <p>123 Main St, Anytown, USA</p>
+                                <h5>Phone:</h5>
+                                <p>555-555-5555</p>
+                                <h5>Email:</h5>
+                                <p>info@wanderease.com</p>
+                                <h5>Follow Us:</h5>
+                                <ul class="social-media">
+                                    <li><a href="#" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
+                                    <li><a href="#" target="_blank"><i class="fa-brands fa-twitter"></i></a></li>
+                                    <li><a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+                                    <li><a href="#" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="contact-form">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="name">Name:</label>
+                                        <input type="text" id="name" name="name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="email">Email:</label>
+                                        <input type="email" id="email" name="email" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="message">Message:</label>
+                                        <textarea id="message" name="message" required></textarea>
+                                    </div>
+                                    <button type="submit">Send</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-section" id="testimonial">
+                <div class="text-center">
+                    <h6>WHAT OUR CUSTOMERS SAY</h6>
+                    <h2>Real Stories from Our Travelers</h2>
+                </div>
+                <div class="testimonial-container">
+                    <div class="testimonial-card">
+                        <div class="testimonial-image">
+                            <img src="images/user1.jfif" alt="Customer Image">
+                        </div>
+                        <div class="testimonial-content">
+                            <p>"I had an amazing experience with Wanderease! The team was very helpful and responsive. The trip was well-planned and exceeded my expectations."</p>
+                            <h5>John Doe</h5>
+                            <span>Travelled to Bali</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-image">
+                            <img src="images/user2.jfif" alt="Customer Image">
+                        </div>
+                        <div class="testimonial-content">
+                            <p>"Wanderease made my trip to Dubai unforgettable! The guides were knowledgeable and friendly. I would definitely recommend them to anyone planning a trip."</p>
+                            <h5>Jane Smith</h5>
+                            <span>Travelled to Dubai</span>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-image">
+                            <img src="images/user3.jfif" alt="Customer Image">
+                        </div>
+                        <div class="testimonial-content">
+                            <p>"I was a bit skeptical about booking a trip online, but Wanderease exceeded my expectations. The communication was clear and the trip was well-organized."</p>
+                            <h5>Bob Johnson</h5>
+                            <span>Travelled to Thailand</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <footer class="footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h5>About Us</h5>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet nulla auctor, vestibulum magna sed, convallis ex.</p>
+                            <ul class="social-media">
+                                <li><a href="#" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
+                                <li><a href="#" target="_blank"><i class="fa-brands fa-twitter"></i></a></li>
+                                <li><a href="#" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+                                <li><a href="#" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <h5>Quick Links</h5>
+                            <ul>
+                                <li><a href="#">Home</a></li>
+                                <li><a href="#">About</a></li>
+                                <li><a href="#">Packages</a></li>
+                                <li><a href="#">Contact</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <h5>Contact Us</h5>
+                            <p>123 Main St, Anytown, USA</p>
+                            <p>Phone: 555-555-5555</p>
+                            <p>Email: <a href="mailto:info@wanderease.com">info@wanderease.com</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="copyright">
+                    <p>&copy; 2023 Wanderease. All rights reserved.</p>
+                </div>
+            </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+</body>
+</html>

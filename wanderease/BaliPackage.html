@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Travel Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      background-color: #fff;
+      padding: 10px 20px;
+    }
+
+    header img {
+      width: 50px;
+      margin-right: 20px;
+    }
+
+    header input {
+      padding: 8px;
+      width: 300px;
+      margin-left: auto;
+      border: 1px solid #ccc;
+    }
+
+    .image-gallery {
+      display: flex;
+      gap: 20px;
+      margin: 20px;
+    }
+
+    .large-image {
+      flex: 1;
+      height: 400px;
+      position: relative;
+    }
+
+    .large-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .small-images {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      width: 30%;
+    }
+
+    .small-images img {
+      width: 100%;
+      height: 190px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .small-images .view-all {
+      position: relative;
+    }
+
+    .small-images .view-all img {
+      opacity: 0.8;
+    }
+
+    .small-images .view-all .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5em;
+      color: white;
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    .all-images-popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .popup-content {
+      width: 80%;
+      height: 80%;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      overflow-y: scroll;
+    }
+
+    .popup-content img {
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      background-color: red;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .details-section {
+      margin: 20px;
+      display: flex;
+    }
+
+    .details-section .info {
+      width: 50%;
+    }
+
+    .details-section .form-container {
+      width: 50%;
+      padding-left: 20px;
+    }
+
+    /* Enquire Now as a card */
+    .form-card {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-container input, .form-container textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .form-container button {
+      width: 100%;
+      padding: 10px;
+      background-color: orange;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 1.2em;
+      cursor: pointer;
+    }
+
+    .trip-highlights {
+      background-color: #e4e8d7;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px;
+    }
+
+    .highlight-tags {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .highlight-tags div {
+      background-color: lightgreen;
+      padding: 8px 12px;
+      margin: 5px;
+      border-radius: 20px;
+      font-size: 0.9em;
+    }
+
+    .itinerary {
+      margin-top: 20px;
+    }
+
+    .itinerary select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 10px; /* Add space between dropdowns */
+    }
+    .itinerary-details {
+      margin-top: 20px;
+    }
+
+    .itinerary-details div {
+      display: none;
+    }
+    .dropdown-container {
+      margin: 20px;
+    }
+
+    .dropdown-content {
+      display: none;
+      margin-top: 10px;
+    }
+
+    .dropdown-content h4 {
+      margin: 10px 0;
+    }
+
+    .dropdown-content ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    .dropdown-content ul li {
+      margin: 5px 0;
+    }
+
+    .dropdown-button {
+      background-color: orange;
+      color: white;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1.2em;
+      width: 100%;
+      text-align: left;
+    }
+    .end-trip {
+      text-align: center;
+      margin-top: 20px;
+      font-weight: bold;
+    }
+
+    .end-trip-star {
+      color: black;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="wanderease.png" alt="Logo">
+    <input type="text" placeholder="Search...">
+  </header>
+
+  <div class="image-gallery">
+    <!-- Left Large Image -->
+    <div class="large-image">
+      <img src="images/Bali.svg" alt="Bali Large Image">
+    </div>
+
+    <!-- Right Small Images (2x2 grid) -->
+    <div class="small-images">
+      <img src="images/Azerbaijan.svg" alt="Bali Small Image 1">
+      <img src="images/Dubai.svg" alt="Bali Small Image 2">
+      <img src="images/Malaysia.svg" alt="Bali Small Image 3">
+      <!-- 4th Image with View All -->
+      <div class="view-all">
+        <img src="images/Singapore.svg" alt="Bali Small Image 4">
+        <div class="overlay" onclick="showAllImages()">View All</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Popup for All Images -->
+  <div class="all-images-popup" id="allImagesPopup" style="display: none;">
+    <div class="popup-content">
+      <button class="close-btn" onclick="closePopup()">Close</button>
+      <img src="images/Bali.svg" alt="Bali Image 1">
+      <img src="images/Azerbaijan.svg" alt="Bali Image 2">
+      <img src="images/Dubai.svg" alt="Bali Image 3">
+      <img src="images/Malaysia.svg" alt="Bali Image 4">
+      <img src="images/Singapore.svg" alt="Bali Image 5">
+    </div>
+  </div>
+
+  <!-- Details Section -->
+  <div class="details-section">
+    <div class="info">
+      <h2>Bali</h2>
+      <p>5D/4N Stay Included</p>
+      <img src="bali-info.jpg" alt="Bali Info Image" width="100%">
+      <p>INR 37,999</p>
+      <div class="price">Price per person</div>
+      <div class="rating">Rating: 4.7</div>
+      <button>Call Us</button>
+    </div>
+
+    <!-- Enquire Now Form Card -->
+    <div class="form-container">
+      <div class="form-card">
+        <h2>Enquire Now</h2>
+        <input type="text" placeholder="Full Name">
+        <input type="email" placeholder="Email">
+        <input type="tel" placeholder="+91 Phone">
+        <input type="date" placeholder="Travel Date">
+        <input type="number" placeholder="Travel Count">
+        <textarea placeholder="Message"></textarea>
+        <button>Send Enquiry</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Trip Highlights -->
+  <div class="trip-highlights">
+    <h3>Trip Highlights</h3>
+    <div class="highlight-tags">
+      <div>Uluwatu Temple</div>
+      <div>Nusa Penida Exploration</div>
+      <div>Waterfalls, ATV Adventure, Beach Clubs</div>
+      <div>Ubud and Rice Terraces</div>
+      <div>Mount Batur Sunrise and Tirta Ganga</div>
+      <div>Garuda Wisnu Kencana and Departure</div>
+    </div>
+
+    
+  <div class="itinerary">
+    <h3>Itinerary</h3>
+    
+    <div class="dropdown-container">
+      <button class="dropdown-button" onclick="toggleDetails('day1')">Day 1: Arrival and Uluwatu Temple</button>
+      <div id="day1-details" class="dropdown-content">
+        <h4>Morning:</h4>
+        <ul>
+          <li>Arrival: Land at Ngurah Rai International Airport, Bali.</li>
+          <li>Transfer to Hotel: Check-in at your hotel in the Uluwatu or Jimbaran area.</li>
+        </ul>
+        <h4>Afternoon:</h4>
+        <ul>
+          <li>Lunch: Enjoy a meal at a local restaurant or at your hotel.</li>
+          <li>Uluwatu Temple: Visit Uluwatu Temple, perched on a cliff with stunning ocean views. Explore the temple and watch the traditional Kecak dance performance in the evening.</li>
+        </ul>
+        <h4>Evening:</h4>
+        <ul>
+          <li>Dinner: Dine at a seaside restaurant in Jimbaran Bay, known for its fresh seafood.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="dropdown-container">
+      <button class="dropdown-button" onclick="toggleDetails('day2')">Day 2: Nusa Penida Exploration</button>
+      <div id="day2-details" class="dropdown-content">
+        <h4>Morning:</h4>
+        <ul>
+          <li>Breakfast: At your hotel.</li>
+          <li>Transfer to Nusa Penida: Take a fast boat from Sanur Beach to Nusa Penida Island.</li>
+        </ul>
+        <h4>Afternoon:</h4>
+        <ul>
+          <li>Lunch: Enjoy a meal at a local restaurant on Nusa Penida.</li>
+          <li>Nusa Penida Tour: Explore the island’s highlights, including:
+            <ul>
+              <li>Keling King Beach: Famous for its dramatic views and unique rock formations.</li>
+              <li>Angel’s Billabong: A natural infinity pool with clear water.</li>
+              <li>Broken Beach: A picturesque natural archway over the ocean.</li>
+            </ul>
+          </li>
+        </ul>
+        <h4>Evening:</h4>
+        <ul>
+          <li>Return to Bali: Take the fast boat back to Bali.</li>
+          <li>Dinner: Relax and have dinner at your hotel or a nearby restaurant.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="dropdown-container">
+      <button class="dropdown-button" onclick="toggleDetails('day3')">Day 3: Waterfalls, ATV Adventure, and Beach Clubs</button>
+      <div id="day3-details" class="dropdown-content">
+        <h4>Morning:</h4>
+        <ul>
+          <li>Breakfast: At your hotel.</li>
+          <li>Waterfall Visit: Explore one of Bali's beautiful waterfalls, such as Tegenungan Waterfall.</li>
+        </ul>
+        <h4>Afternoon:</h4>
+        <ul>
+          <li>Lunch: Enjoy lunch at a local restaurant near the waterfalls.</li>
+          <li>ATV Adventure: Embark on an ATV adventure through Bali's scenic landscapes, including rice fields, forests, and rivers.</li>
+        </ul>
+        <h4>Evening:</h4>
+        <ul>
+          <li>Beach Club: Head to a popular beach club such as Potato Head Beach Club or Finns Beach Club for a relaxing evening by the ocean.</li>
+          <li>Dinner: Dine at the beach club or explore dining options in the area.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="dropdown-container">
+      <button class="dropdown-button" onclick="toggleDetails('day4')">Day 4: Ubud and Rice Terraces</button>
+      <div id="day4-details" class="dropdown-content">
+        <h4>Morning:</h4>
+        <ul>
+          <li>Breakfast: At your hotel.</li>
+          <li>Transfer to Ubud: Travel to Ubud, Bali’s cultural heart.</li>
+        </ul>
+        <h4>Afternoon:</h4>
+        <ul>
+          <li>Lunch: Enjoy lunch at a café or restaurant in Ubud.</li>
+          <li>
+            Rice Terraces: Explore the iconic Tegalalang Rice Terraces or Jatiluwih Rice Terraces, 
+known for their stunning green landscapes and traditional rice farming techniques.</li>
+<li>Ubud Market: Browse local crafts, souvenirs, and traditional Balinese items at Ubud 
+  Market.
+  </li>
+        </ul>
+        <h4>Evening:</h4>
+        <ul>
+          <li>Dinner: Dine at a restaurant in Ubud, perhaps trying some traditional Balinese 
+            cuisine</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="dropdown-container">
+      <button class="dropdown-button" onclick="toggleDetails('day5')">Day 5: Garuda Wisnu Kencana and Departure</button>
+      <div id="day5-details" class="dropdown-content">
+        <h4>Early Morning:</h4>
+        <ul>
+          <li>Mount Batur Sunrise Trek: Depart early for a sunrise trek up Mount Batur. Enjoy panoramic views as the sun rises over the volcanic landscape.</li>
+        </ul>
+        <h4>Morning:</h4>
+        <ul>
+          <li>Breakfast: Enjoy a breakfast with a view after the trek.</li>
+        </ul>
+        <h4>Late Morning:</h4>
+        <ul>
+          <li>Transfer to Tirta Ganga: Head to the Tirta Ganga Water Palace.</li>
+        </ul>
+        <h4>Afternoon:</h4>
+        <ul>
+          <li>Lunch: Have lunch at a local restaurant or café near Tirta Ganga.</li>
+          <li>Tirta Ganga: Explore the Tirta Ganga Water Palace, known for its serene pools and beautiful gardens.</li>
+        </ul>
+        <h4>Evening:</h4>
+        <ul>
+          <li>Return to Hotel: Head back to your hotel in Ubud or your base location.</li>
+          <li>Dinner: Relax and have dinner at your hotel or a nearby restaurant.</li>
+        </ul>
+        
+      </div>
+    </div>
+
+    <div class="dropdown-container">
+      <button class="dropdown-button" onclick="toggleDetails('day6')">Day 6: Departure</button>
+      <div id="day6-details" class="dropdown-content">
+        <h4>Morning:</h4>
+        <ul>
+          <li>Breakfast: At your hotel.</li>
+          <li>Garuda Wisnu Kencana: Visit the Garuda Wisnu Kencana Cultural Park to see the massive Garuda Wisnu Kencana statue and enjoy the cultural performances and art exhibitions.</li>
+        </ul>
+        <h4>Afternoon:</h4>
+        <ul>
+          <li>Lunch: Have lunch at a restaurant in or near the cultural park.</li>
+          <li>Shopping or Relaxation: If time permits, do some last-minute shopping or relaxation at a nearby café.</li>
+        </ul>
+        <h4>Evening:</h4>
+        <ul>
+          <li>Transfer to Airport: Check out of your hotel and transfer to Ngurah Rai International Airport for your departure.</li>
+        </ul>      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function toggleDetails(day) {
+      const details = document.getElementById(`${day}-details`);
+      const isVisible = details.style.display === 'block';
+      
+      // Hide all details
+      document.querySelectorAll('.dropdown-content').forEach(div => div.style.display = 'none');
+      
+      // Show selected day details if it was hidden
+      if (!isVisible) {
+        details.style.display = 'block';
+      }
+    }
+    function showAllImages() {
+  document.getElementById("allImagesPopup").style.display = "flex";
+}
+
+function closePopup() {
+  document.getElementById("allImagesPopup").style.display = "none";
+}
+  </script>
+  </body>
+  </html>
