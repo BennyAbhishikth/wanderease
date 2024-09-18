@@ -7,9 +7,11 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
+      background-color: white;
       margin: 0;
       padding: 0;
+      width: 1000px;
+     margin-left: 200px;
     }
 
     header {
@@ -150,7 +152,7 @@
     }
 
     .form-container input, .form-container textarea {
-      width: 100%;
+      width: 93%;
       padding: 10px;
       margin: 10px 0;
       border: 1px solid #ccc;
@@ -190,6 +192,8 @@
 
     .itinerary {
       margin-top: 20px;
+      background-color: #f5f5f5;
+      padding: 50px;
     }
 
     .itinerary select {
@@ -213,6 +217,8 @@
     .dropdown-content {
       display: none;
       margin-top: 10px;
+      background-color: white;
+      padding: 20px;
     }
 
     .dropdown-content h4 {
@@ -229,15 +235,20 @@
     }
 
     .dropdown-button {
-      background-color: orange;
-      color: white;
-      padding: 10px;
+      background-color: white;
+      color: black;
       border: none;
+   
+      padding: 10px;
+      
       border-radius: 5px;
       cursor: pointer;
-      font-size: 1.2em;
+      font-size: 0.9em;
       width: 100%;
       text-align: left;
+      
+      border:1px solid #db7202;
+      
     }
     .end-trip {
       text-align: center;
@@ -248,10 +259,17 @@
     .end-trip-star {
       color: black;
     }
+    .highlight-tags .h11{
+      background-color: #db720213;
+      border:1px solid #db7202;
+      color: #db7202;
+      font-weight: 700;
+      font-size: 12px;
+    }
   </style>
 </head>
 <body>
-
+  
   <header>
     <img src="wanderease.png" alt="Logo">
     <input type="text" placeholder="Search...">
@@ -292,12 +310,23 @@
   <div class="details-section">
     <div class="info">
       <h2>Bali</h2>
-      <p>5D/4N Stay Included</p>
-      <img src="bali-info.jpg" alt="Bali Info Image" width="100%">
-      <p>INR 37,999</p>
-      <div class="price">Price per person</div>
-      <div class="rating">Rating: 4.7</div>
-      <button>Call Us</button>
+      <p><span style="background-color: rgb(216, 121, 4); padding:7px;border-radius:50px;color:white;font-size:12px;font-weight:800;">5D/4N</span> &nbsp; Stay Included</p>
+      <!-- <img src="bali-info.jpg" alt="Bali Info Image" width="100%"> -->
+      <div style="width: 90%;border:1px solid grey;padding:10px;border-radius:5px">
+        <h1 style="margin-bottom: 0;">INR 37,999</h1>
+        <div style="margin-top: 0;">Price per person</div>
+        <div style="text-align: right;">Rating: 4.7</div>
+        <button style="width: 100%; margin-top:10px;height:40px;background-color:#db7202;border:none;border-radius:5px;color:white;font-weight:900">Call Us</button>
+     </div>
+      <h3>Trip Highlights</h3>
+    <div class="highlight-tags">
+      <div class="h11">Uluwatu Temple</div>
+      <div class="h11">Nusa Penida Exploration</div>
+      <div class="h11">Waterfalls, ATV Adventure, Beach Clubs</div>
+      <div class="h11">Ubud and Rice Terraces</div>
+      <div class="h11">Mount Batur Sunrise and Tirta Ganga</div>
+      <div class="h11">Garuda Wisnu Kencana and Departure</div>
+    </div>
     </div>
 
     <!-- Enquire Now Form Card -->
@@ -316,16 +345,8 @@
   </div>
 
   <!-- Trip Highlights -->
-  <div class="trip-highlights">
-    <h3>Trip Highlights</h3>
-    <div class="highlight-tags">
-      <div>Uluwatu Temple</div>
-      <div>Nusa Penida Exploration</div>
-      <div>Waterfalls, ATV Adventure, Beach Clubs</div>
-      <div>Ubud and Rice Terraces</div>
-      <div>Mount Batur Sunrise and Tirta Ganga</div>
-      <div>Garuda Wisnu Kencana and Departure</div>
-    </div>
+  <!-- <div class="trip-highlights"> -->
+    
 
     
   <div class="itinerary">

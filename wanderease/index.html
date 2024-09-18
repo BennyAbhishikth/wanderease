@@ -233,39 +233,39 @@
             font-style: italic;
         }
         .welcome-section {
-    position: relative;
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: #fff; /* Set text color to white */
-}
+            position: relative;
+            
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff; /* Set text color to white */
+        }
 
-.welcome-section video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-/* Style the about section */
-.about-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+        .welcome-section video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        /* Style the about section */
+        .about-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-.text-center {
-  text-align: center;
-}
+        .text-center {
+        text-align: center;
+        }
 
-.container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+        .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        }
 
 .left-boxes, .right-boxes {
   display: flex;
@@ -296,6 +296,7 @@
 }
 
 .testimonial-card {
+   
     margin: 20px;
     width: 300px;
     background-color: #fff;
@@ -305,15 +306,19 @@
 }
 
 .testimonial-image {
-    width: 100px;
-    height: 100px;
+    width: 100%;
+    padding: 10px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    position: relative;
+    justify-content: center;
 }
 
 .testimonial-image img {
-    width: 100%;
+    width: 30%;
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
@@ -528,6 +533,48 @@
     </div>
     <div>
     <div class="tabs-center ">
+
+
+        <div class="welcome-section"></div>
+            <video poster="images/bg_1.jpg" loop autoplay muted playsinline="true">
+                <source src="images/wanderease.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        </div>
+        <div class="about-section" id="about">
+            <div class="text-center">
+              <h6 style="margin-top: 30px;">GET TO KNOW US</h6>
+              <h2 style="color: #db7202;">Experience the World With Wanderease</h2>
+              <!-- <p>Our dating website offers a range of features and benifits that make finding love online</p>
+              <p> and enjoyable. With our advanced matching algorithm</p> -->
+            </div>
+            <div class="container">
+                <div style="margin-left: 60px;" class="left-boxes">
+                  <div class="box">
+                    <h5 style="color: #db7202;">Luxury Trip</h5>
+                    <p>Escape to unparalleled luxury with exclusive experiences in the world's most breathtaking destinations, </p>
+                  </div>
+                  <div class="box">
+                    <h5 style="color: #db7202;" >Affordable Budget</h5>
+                    <p>Your safety is a priority. We ensure strict security for your information.</p>
+                  </div>
+                </div>
+                <div style="margin-left: -80px;" class="image-center">
+                  <img src="images/aboutimg.png" alt="image-alt ">
+                </div>
+                <div class="right-boxes">
+                  <div class="box">
+                    <h5 style="color: #db7202;" >Personalized approach</h5>
+                    <p>Effortlessly navigate and find your perfect match with our user-friendly interface.</p>
+                  </div>
+                  <div class="box">
+                    <h5 style="color: #db7202;" >Experienced Guide</h5>
+                    <p>Our team is available 24/7 to assist you with any queries or concern.</p>
+                  </div>
+                </div>
+              </div>
+          </div>
         <ul class="nav sticky-top nav-pills mb-3" id="pills-tab" role="tablist">
             <li class="nav-item " role="presentation">
               <button class="nav-link active" id="pills-explore-tab" data-bs-toggle="pill" data-bs-target="#pills-explore" type="button" role="tab" aria-controls="pills-explore" aria-selected="true">Explore</button>
@@ -559,46 +606,7 @@
             
               
         </ul>
-        <div class="welcome-section">
-            <video poster="images/bg_1.jpg" loop autoplay muted playsinline="true">
-                <source src="images/wanderease.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </div>
-        </div>
-        <div class="about-section" id="about">
-            <div class="text-center">
-              <h6>GET TO KNOW US</h6>
-              <h2>Experience the World With Wanderease</h2>
-              <p>Our dating website offers a range of features and benifits that make finding love online</p>
-              <p> and enjoyable. With our advanced matching algorithm</p>
-            </div>
-            <div class="container">
-                <div class="left-boxes">
-                  <div class="box">
-                    <h5>Luxury Trip</h5>
-                    <p>Our algorithm connects you with like-minded partners using your interests.</p>
-                  </div>
-                  <div class="box">
-                    <h5>Affordable Budget</h5>
-                    <p>Your safety is a priority. We ensure strict security for your information.</p>
-                  </div>
-                </div>
-                <div class="image-center">
-                  <img src="images/aboutimg.png" alt="image-alt ">
-                </div>
-                <div class="right-boxes">
-                  <div class="box">
-                    <h5>Personalized approach</h5>
-                    <p>Effortlessly navigate and find your perfect match with our user-friendly interface.</p>
-                  </div>
-                  <div class="box">
-                    <h5>Experienced Guide</h5>
-                    <p>Our team is available 24/7 to assist you with any queries or concern.</p>
-                  </div>
-                </div>
-              </div>
-          </div>
+        
     
             </div>
         <div class="tab-content" id="pills-tabContent">
@@ -866,12 +874,12 @@
             <div class="contact-section" id="contact">
                 <div class="text-center">
                     <h6>GET IN TOUCH WITH US</h6>
-                    <h2>Contact Us</h2>
+                    <h2 style="color: #db7202;">Contact Us</h2>
                 </div>
-                <div class="container">
+                <div  style="display: flex;align-items:center;justify-content:center;" class="container">
                     <div class="row">
                         <div class="col-md-6">
-                            <div class="contact-info">
+                            <div style="width: 400px;" class="contact-info">
                                 <h5>Address:</h5>
                                 <p>123 Main St, Anytown, USA</p>
                                 <h5>Phone:</h5>
@@ -888,7 +896,7 @@
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <div class="contact-form">
+                            <div  style="width: 400px;" class="contact-form">
                                 <form>
                                     <div class="form-group">
                                         <label for="name">Name:</label>
@@ -902,7 +910,7 @@
                                         <label for="message">Message:</label>
                                         <textarea id="message" name="message" required></textarea>
                                     </div>
-                                    <button type="submit">Send</button>
+                                    <center><button style="background-color: #db7202;" type="submit">Send</button></center>
                                 </form>
                             </div>
                         </div>
@@ -913,12 +921,12 @@
             <div class="testimonial-section" id="testimonial">
                 <div class="text-center">
                     <h6>WHAT OUR CUSTOMERS SAY</h6>
-                    <h2>Real Stories from Our Travelers</h2>
+                    <h2 style="color: #db7202;">Real Stories from Our Travelers</h2>
                 </div>
                 <div class="testimonial-container">
                     <div class="testimonial-card">
-                        <div class="testimonial-image">
-                            <img src="images/user1.jfif" alt="Customer Image">
+                        <div  class="testimonial-image">
+                            <img src="images/user1.jfif" style="width: 30%;" alt="Customer Image">
                         </div>
                         <div class="testimonial-content">
                             <p>"I had an amazing experience with Wanderease! The team was very helpful and responsive. The trip was well-planned and exceeded my expectations."</p>
@@ -950,7 +958,7 @@
             </div>
             <footer class="footer">
                 <div class="container">
-                    <div class="row">
+                    <div  class="row">
                         <div class="col-md-4">
                             <h5>About Us</h5>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet nulla auctor, vestibulum magna sed, convallis ex.</p>
