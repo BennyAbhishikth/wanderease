@@ -1,0 +1,123 @@
+.navbar-nav .nav-link {
+    color: #db7202;
+    transition: color 0.3s, text-decoration 0.3s;
+}
+
+
+.navbar-nav .nav-link.active {
+    color: #db7202;
+}
+
+
+.navbar-nav .nav-link:hover {
+    color: #db7202;
+    text-decoration: none;
+    text-decoration-color: #db7202;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+}
+
+
+.navbar-nav .nav-link {
+    position: relative;
+}
+.navbar-nav .nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #db7202;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    transform-origin: bottom right;
+}
+.navbar-nav .nav-link:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+
+.search-input {
+    border-radius: 25px;
+    padding-left: 2.5rem;
+    background: #fff;
+    width: 180px;
+}
+
+.search-icon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6c757d;
+}
+
+.search-input::placeholder {
+    color: transparent;
+}
+
+.search-button {
+    border-radius: 25px;
+}
+#search-button:hover {
+    background-color: #db7202;
+    
+    border-color: #db7202;
+    color: #fff;
+}
+#search-button{
+    color: #db7202; border-color: #db7202;
+}
+
+.input-group {
+    position: relative;
+    width: 100%;
+}
+
+.tabs-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+   
+}
+
+
+.nav-pills .nav-item {
+    margin: 0 20px; 
+}
+
+
+.tab-content {
+    margin-top: 30px;
+}
+
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+    background-color: #db7202 !important; 
+    color: white !important; 
+}
+
+
+.nav-pills .nav-link:hover {
+    color: #fff;
+    background-color: #db7202; 
+}
+
+
+.nav-pills .nav-link {
+    
+    color: rgb(1, 29, 52);
+}
+
+       
+.nav-pills {
+    margin-top: 20px;  
+    margin-bottom: 20px;  
+}
+
+
+#home{
+    background-image: url('/images/main-back.png');
+}
